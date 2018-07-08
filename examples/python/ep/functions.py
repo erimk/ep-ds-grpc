@@ -14,6 +14,7 @@ def f2_square(num):
     return num ** 2
 
 def f3_mean_8(n1, n2, n3, n4, n5, n6, n7, n8):
+
     return (n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8) / 8
 
 def f4_str_is_palindrome(value):
