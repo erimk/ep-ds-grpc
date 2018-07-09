@@ -1,0 +1,141 @@
+// Copyright 2015 gRPC authors.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.routeguide";
+option java_outer_classname = "RouteGuideProto";
+option objc_class_prefix = "RTG";
+
+package functions;
+
+// Interface exported by the server.
+service EpFunctions {
+ 
+  rpc f1_noop (Empty) returns (Empty) {}
+  
+  rpc f2_square (NumberRequest) returns (NumberReply) {}
+
+  rpc f3_mean_8 (MeanRequest) returns (MeanReply) {}
+
+  rpc f4_str_is_palindrome (PalindromeRequest) returns (PalindromeReply) {}
+    
+  rpc f5_exp_rep_string (LongRequest) returns (LongReply) {}
+    
+  rpc f6_create_employee (Employee) returns (Empty) {}
+
+  rpc f7_get_employee (EmployeeId)returns (Employee) {}
+  
+  rpc f8_get_employee_complete (EmployeeId)returns (EmployeeComplete) {}
+
+
+}
+
+message Empty {
+
+}
+
+message NumberRequest {
+  int32 num = 1;
+}
+
+message NumberReply {
+  int32 num = 1;
+}
+
+message LongRequest {
+  string num = 1;
+}
+
+message LongReply {
+  string num = 1;
+}
+
+
+//message Employee {
+//  function.Employee e = 1;
+//}
+
+message Employee{
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+  Employee manager = 4;
+}
+message EmployeeId {
+  int32 id = 1;
+}
+
+message EmployeeComplete {
+  Employee e = 1;   
+}
+
+message MeanRequest{
+ int64 n1 = 1;
+ int64 n2 = 2;
+ int64 n3 = 3;
+ int64 n4 = 4;
+ int64 n5 = 5;
+ int64 n6 = 6;
+ int64 n7 = 7;
+ int64 n8 = 8;
+}
+
+message MeanReply{
+ int64 n1 = 1;
+}
+
+message PalindromeRequest{
+  string palindrome = 1;
+}
+
+message PalindromeReply{
+  bool palindrome = 1;
+}
+
+//def f1_noop():
+//    pass
+//def f2_square(num):
+//    return num ** 2
+//class Employee():
+//    def __init__(self):
+//        self.id = 1
+//        self.name = ''
+//        self.age = 0
+//        self.manager = None
+//def f3_mean_8(n1, n2, n3, n4, n5, n6, n7, n8):
+//    return (n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8) / 8
+//def f4_str_is_palindrome(value):
+//    return value == value[::-1]
+
+//def f5_exp_rep_string(value):
+//    return value * len(value)
+
+//def f6_create_employee(employee):
+//    pass
+
+//def f7_get_employee(e_id):
+//    e = Employee()
+//    e.id = e_id
+//    e.name = random.choice(["Lukashenko", 'Petrovich', 'Schrodivich'])
+//   e.age = 30
+//   return e
+
+//def f8_get_employee_complete(e_id):
+//    e = f7_get_employee(e_id)
+//   e.manager = f7_get_employee(e_id + 1)
+//    return e
+
+   
